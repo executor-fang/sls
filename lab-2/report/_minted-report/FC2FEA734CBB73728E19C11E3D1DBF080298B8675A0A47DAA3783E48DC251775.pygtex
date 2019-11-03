@@ -1,0 +1,36 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+ch}{\PYGZsh{}!/bin/sh}
+
+\PYG{n+nv}{discipline\PYGZus{}name}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}Системное программное обеспечение\PYGZdq{}}
+\PYG{n+nv}{project\PYGZus{}name}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}Лабораторная работа №2\PYGZdq{}}
+\PYG{n+nv}{author}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}Черных Д.С.\PYGZdq{}}
+\PYG{n+nv}{aurhor\PYGZus{}group}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}P3312\PYGZdq{}}
+\PYG{n+nv}{variant}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}2\PYGZdq{}}
+\PYG{n+nv}{edge\PYGZus{}separator}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZdq{}}
+\PYG{n+nv}{separator}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}+++++++++++++++++++++++++++++++++++++++\PYGZdq{}}
+
+\PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}edge\PYGZus{}separator}
+\PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}discipline\PYGZus{}name}
+\PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}project\PYGZus{}name}
+\PYG{n+nb}{echo} \PYG{l+s+s2}{\PYGZdq{}Автор: }\PYG{n+nv}{\PYGZdl{}author}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{n+nb}{echo} \PYG{l+s+s2}{\PYGZdq{}Группа: }\PYG{n+nv}{\PYGZdl{}author\PYGZus{}group}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{n+nb}{echo} \PYG{l+s+s2}{\PYGZdq{}Вариант: }\PYG{n+nv}{\PYGZdl{}variant}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{n+nb}{echo} \PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}
+\PYG{n+nb}{echo} \PYG{l+s+s2}{\PYGZdq{}Скрипт выводит список групп, которым принадлежат более чем указанное количество пользователей\PYGZdq{}}
+\PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}separator}
+getent passwd \PYG{p}{|} cut \PYGZhy{}d: \PYGZhy{}f1 \PYG{p}{|} xargs groups root \PYG{p}{|} sort \PYGZhy{}u \PYG{p}{|} nawk \PYGZhy{}F: \PYGZhy{}v \PYG{n+nv}{count}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}1}\PYG{l+s+s2}{\PYGZdq{}} \PYG{l+s+se}{\PYGZbs{}}
+\PYG{l+s+s1}{\PYGZsq{}\PYGZob{}}
+\PYG{l+s+s1}{	split(\PYGZdl{}2, groups, \PYGZdq{} \PYGZdq{});}
+\PYG{l+s+s1}{	for (group in groups) \PYGZob{}}
+\PYG{l+s+s1}{		counts[groups[group]]++;}
+\PYG{l+s+s1}{	\PYGZcb{}}
+\PYG{l+s+s1}{\PYGZcb{} END \PYGZob{}}
+\PYG{l+s+s1}{	for (group in counts) \PYGZob{}}
+\PYG{l+s+s1}{		if (counts[group] \PYGZgt{} count) \PYGZob{}}
+\PYG{l+s+s1}{			print group}
+\PYG{l+s+s1}{		\PYGZcb{}}
+\PYG{l+s+s1}{	\PYGZcb{}}
+\PYG{l+s+s1}{\PYGZcb{}\PYGZsq{}} \PYG{p}{|} sort \PYGZhy{}u
+
+\PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}edge\PYGZus{}separator}
+\end{Verbatim}

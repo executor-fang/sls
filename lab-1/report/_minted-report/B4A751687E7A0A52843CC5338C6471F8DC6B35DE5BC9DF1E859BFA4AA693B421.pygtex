@@ -1,0 +1,64 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+ch}{\PYGZsh{}!/bin/sh}
+
+\PYG{n+nv}{ERR\PYGZus{}PATH}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}HOME}\PYG{l+s+s2}{/lab1\PYGZus{}err\PYGZdq{}}
+\PYG{n+nv}{SEPARATOR\PYGZus{}STRING}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZdq{}}
+\PYG{n+nv}{SEPARATOR\PYGZus{}ANSWER\PYGZus{}STRING}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\PYGZdq{}}
+
+\PYG{k}{while} \PYG{o}{[} \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}script}\PYG{l+s+s2}{\PYGZdq{}} !\PYG{o}{=} \PYG{l+m}{6} \PYG{o}{]}
+\PYG{k}{do}
+    \PYG{n+nb}{echo} \PYG{l+s+s1}{\PYGZsq{}Скрипт для первой лабораторной работы по ОСП\PYGZsq{}}
+    \PYG{n+nb}{echo} \PYG{l+s+s1}{\PYGZsq{}Вариант 4\PYGZsq{}}
+    \PYG{n+nb}{echo} \PYG{l+s+s1}{\PYGZsq{}Автор: Черных Д.С.\PYGZsq{}}
+    \PYG{n+nb}{echo} \PYG{l+s+s1}{\PYGZsq{}Группа: P3312\PYGZsq{}}
+    \PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}SEPARATOR\PYGZus{}STRING}
+    \PYG{n+nb}{echo} \PYG{l+s+s1}{\PYGZsq{}1. Напечатать имя текущего каталога\PYGZsq{}}
+    \PYG{n+nb}{echo} \PYG{l+s+s1}{\PYGZsq{}2. Сменить текущий каталог\PYGZsq{}}
+    \PYG{n+nb}{echo} \PYG{l+s+s1}{\PYGZsq{}3. Выдать список пользователей, имеющих хотя бы один процесс\PYGZsq{}}
+    \PYG{n+nb}{echo} \PYG{l+s+s1}{\PYGZsq{}4. Создать файл\PYGZsq{}}
+    \PYG{n+nb}{echo} \PYG{l+s+s1}{\PYGZsq{}5. Скопировать файл\PYGZsq{}}
+    \PYG{n+nb}{echo} \PYG{l+s+s1}{\PYGZsq{}6. Выйти из программы\PYGZsq{}}
+    \PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}SEPARATOR\PYGZus{}STRING}
+    \PYG{n+nb}{echo} \PYG{l+s+s1}{\PYGZsq{}Введите номер выбранного пункта меню:\PYGZsq{}}
+
+    \PYG{n+nb}{read} script \PYG{o}{||} \PYG{n+nb}{break}
+
+    \PYG{k}{case} \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}script}\PYG{l+s+s2}{\PYGZdq{}} in
+        \PYG{l+m}{1}\PYG{o}{)}
+            \PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}SEPARATOR\PYGZus{}ANSWER\PYGZus{}STRING}
+            \PYG{n+nb}{pwd} \PYG{l+m}{2}\PYGZgt{}\PYGZgt{} \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}ERR\PYGZus{}PATH}\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{||} \PYG{n+nb}{echo} \PYG{l+s+s1}{\PYGZsq{}Не удалось напечатать имя текщего каталога!\PYGZsq{}} \PYG{l+m}{1}\PYGZgt{}\PYG{p}{\PYGZam{}}\PYG{l+m}{2}
+            \PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}SEPARATOR\PYGZus{}ANSWER\PYGZus{}STRING}
+        \PYG{p}{;;}
+        \PYG{l+m}{2}\PYG{o}{)}
+            \PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}SEPARATOR\PYGZus{}ANSWER\PYGZus{}STRING}
+            \PYG{n+nb}{echo} \PYG{l+s+s1}{\PYGZsq{}Введите путь назначения для смены текущего каталога\PYGZsq{}}
+            \PYG{n+nb}{read} cdpath \PYG{o}{||} \PYG{n+nb}{break}
+            \PYG{n+nb}{cd} \PYG{n+nv}{\PYGZdl{}cdpath} \PYG{l+m}{2}\PYGZgt{}\PYGZgt{} \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}ERR\PYGZus{}PATH}\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{||} \PYG{n+nb}{echo} \PYG{l+s+s1}{\PYGZsq{}Не удалось сменить текущий каталог\PYGZsq{}} \PYG{l+m}{1}\PYGZgt{}\PYG{p}{\PYGZam{}}\PYG{l+m}{2}
+            \PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}SEPARATOR\PYGZus{}ANSWER\PYGZus{}STRING}
+        \PYG{p}{;;}
+        \PYG{l+m}{3}\PYG{o}{)}
+            \PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}SEPARATOR\PYGZus{}ANSWER\PYGZus{}STRING}
+            w \PYG{p}{|} awk \PYG{l+s+s1}{\PYGZsq{}\PYGZob{}print \PYGZdl{}1\PYGZcb{}\PYGZsq{}} \PYG{p}{|} tail \PYGZhy{}n +3 \PYG{l+m}{2}\PYGZgt{}\PYGZgt{} \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}ERR\PYGZus{}PATH}\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{||} \PYG{n+nb}{echo} \PYG{l+s+s1}{\PYGZsq{}Не удалось вывести список пользователей имеющих хотя бы один процесс\PYGZsq{}} \PYG{l+m}{1}\PYGZgt{}\PYG{p}{\PYGZam{}}\PYG{l+m}{2}
+            \PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}SEPARATOR\PYGZus{}ANSWER\PYGZus{}STRING}
+        \PYG{p}{;;}
+        \PYG{l+m}{4}\PYG{o}{)}
+            \PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}SEPARATOR\PYGZus{}ANSWER\PYGZus{}STRING}
+            \PYG{n+nb}{echo} \PYG{l+s+s1}{\PYGZsq{}Введите название файла\PYGZsq{}}
+            \PYG{n+nb}{read} file\PYGZus{}name \PYG{o}{||} \PYG{n+nb}{break}
+            \PYG{n+nb}{echo} \PYG{l+s+s1}{\PYGZsq{}Введите путь, где файл должен быть создан\PYGZsq{}}
+            \PYG{n+nb}{read} file\PYGZus{}path \PYG{o}{||} \PYG{n+nb}{break}
+            touch \PYG{n+nv}{\PYGZdl{}file\PYGZus{}path}/\PYG{n+nv}{\PYGZdl{}file\PYGZus{}name} \PYG{l+m}{2}\PYGZgt{}\PYGZgt{} \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}ERR\PYGZus{}PATH}\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{||} \PYG{n+nb}{echo} \PYG{l+s+s1}{\PYGZsq{}Не удалось создать файл с указанным путём\PYGZsq{}} \PYG{l+m}{1}\PYGZgt{}\PYG{p}{\PYGZam{}}\PYG{l+m}{2}
+            \PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}SEPARATOR\PYGZus{}ANSWER\PYGZus{}STRING}
+        \PYG{p}{;;}
+        \PYG{l+m}{5}\PYG{o}{)}
+            \PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}SEPARATOR\PYGZus{}ANSWER\PYGZus{}STRING}
+            \PYG{n+nb}{echo} \PYG{l+s+s1}{\PYGZsq{}Введите название файла, который должен быть скопирован\PYGZsq{}}
+            \PYG{n+nb}{read} file\PYGZus{}to\PYGZus{}copy\PYGZus{}name \PYG{o}{||} \PYG{n+nb}{break}
+            \PYG{n+nb}{echo} \PYG{l+s+s1}{\PYGZsq{}Введите путь, куда файл должен быть скопирован\PYGZsq{}}
+            \PYG{n+nb}{read} file\PYGZus{}to\PYGZus{}copy\PYGZus{}path \PYG{o}{||} \PYG{n+nb}{break}
+            cp \PYG{n+nv}{\PYGZdl{}file\PYGZus{}to\PYGZus{}copy\PYGZus{}name} \PYG{n+nv}{\PYGZdl{}file\PYGZus{}to\PYGZus{}copy\PYGZus{}path} \PYG{l+m}{2}\PYGZgt{}\PYGZgt{} \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}ERR\PYGZus{}PATH}\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{||} \PYG{n+nb}{echo} \PYG{l+s+s1}{\PYGZsq{}Не удалось скопировать файл в указанный путь\PYGZsq{}} \PYG{l+m}{1}\PYGZgt{}\PYG{p}{\PYGZam{}}\PYG{l+m}{2}
+            \PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}SEPARATOR\PYGZus{}ANSWER\PYGZus{}STRING}
+        \PYG{p}{;;}
+    \PYG{k}{esac}
+\PYG{k}{done}
+\end{Verbatim}
