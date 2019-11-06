@@ -1,0 +1,28 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+ch}{\PYGZsh{}!/bin/sh}
+
+\PYG{n+nv}{discipline\PYGZus{}name}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}Системное программное обеспечение\PYGZdq{}}
+\PYG{n+nv}{project\PYGZus{}name}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}Лабораторная работа №2. Часть 1.\PYGZdq{}}
+\PYG{n+nv}{author}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}Черных Д.С.\PYGZdq{}}
+\PYG{n+nv}{author\PYGZus{}group}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}P3312\PYGZdq{}}
+\PYG{n+nv}{variant}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}2\PYGZdq{}}
+\PYG{n+nv}{edge\PYGZus{}separator}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZdq{}}
+\PYG{n+nv}{separator}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}+++++++++++++++++++++++++++++++++++++++\PYGZdq{}}
+
+\PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}edge\PYGZus{}separator}
+\PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}discipline\PYGZus{}name}
+\PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}project\PYGZus{}name}
+\PYG{n+nb}{echo} \PYG{l+s+s2}{\PYGZdq{}Автор: }\PYG{n+nv}{\PYGZdl{}author}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{n+nb}{echo} \PYG{l+s+s2}{\PYGZdq{}Группа: }\PYG{n+nv}{\PYGZdl{}author\PYGZus{}group}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{n+nb}{echo} \PYG{l+s+s2}{\PYGZdq{}Вариант: }\PYG{n+nv}{\PYGZdl{}variant}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{n+nb}{echo} \PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}
+\PYG{n+nb}{echo} \PYG{l+s+s2}{\PYGZdq{}Данный скрипт выводит списки имён каталогов в каталоге с путём \PYGZbs{}\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}1}\PYG{l+s+s2}{\PYGZbs{}\PYGZdq{}, имеющих не менее одного подкаталога. Список сортируется по времени модификации.\PYGZdq{}}
+\PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}separator}
+\PYG{k}{if} \PYG{o}{[} ! \PYGZhy{}z \PYG{n+nv}{\PYGZdl{}1} \PYG{o}{]}
+	\PYG{k}{then}	
+		ls \PYGZhy{}lAtb \PYGZhy{}\PYGZhy{} \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}1}\PYG{l+s+s2}{\PYGZdq{}} \PYG{p}{|} grep \PYG{l+s+s2}{\PYGZdq{}\PYGZca{}d\PYGZdq{}} \PYG{p}{|} awk \PYG{l+s+s1}{\PYGZsq{}\PYGZob{} if (\PYGZdl{}2 \PYGZgt{} 2) \PYGZob{} print \PYGZdq{}\PYGZbs{}\PYGZdq{}\PYGZdq{}\PYGZdl{}9\PYGZdq{}\PYGZbs{}\PYGZbs{}n\PYGZbs{}\PYGZdq{}\PYGZdq{} \PYGZcb{} \PYGZcb{}\PYGZsq{}} \PYG{p}{|} xargs \PYGZhy{}L \PYG{l+m}{1} \PYG{n+nb}{printf} \PYG{l+m}{2}\PYGZgt{}\PYGZgt{}/dev/null \PYG{o}{||} \PYG{n+nb}{echo} \PYG{l+s+s1}{\PYGZsq{}В указанном аргументе отсутствуют нужные каталоги или он некорректен\PYGZsq{}} \PYG{l+m}{1}\PYGZlt{}\PYG{p}{\PYGZam{}}\PYG{l+m}{2}
+	\PYG{k}{else}
+		\PYG{n+nb}{echo} \PYG{l+s+s1}{\PYGZsq{}Вы не указали ни одного аргумента\PYGZsq{}}
+\PYG{k}{fi}
+\PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}edge\PYGZus{}separator}
+\end{Verbatim}

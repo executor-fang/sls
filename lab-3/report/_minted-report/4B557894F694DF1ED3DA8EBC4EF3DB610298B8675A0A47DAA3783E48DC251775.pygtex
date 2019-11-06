@@ -1,0 +1,42 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+ch}{\PYGZsh{}!/bin/bash}
+
+\PYG{c+c1}{\PYGZsh{} Вариант 13}
+\PYG{c+c1}{\PYGZsh{} Список файлов, для которых заданный пользователь имеет право исполнения.}
+
+\PYG{n+nb}{set} \PYGZhy{}f
+
+\PYG{o}{[[} ! \PYGZhy{}n \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}1}\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{]]} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n+nb}{echo} \PYG{l+s+s2}{\PYGZdq{}Username is required\PYGZdq{}} \PYGZgt{}\PYG{p}{\PYGZam{}}\PYG{l+m}{2} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n+nb}{exit} \PYG{l+m}{1}
+\PYG{o}{[[} \PYG{k}{\PYGZdl{}(}getent passwd \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}1}\PYG{l+s+s2}{\PYGZdq{}} \PYG{p}{|} wc \PYGZhy{}l\PYG{k}{)} \PYGZhy{}ne \PYG{l+m}{1} \PYG{o}{]]} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n+nb}{echo} \PYG{l+s+s2}{\PYGZdq{}User not found\PYGZdq{}} \PYGZgt{}\PYG{p}{\PYGZam{}}\PYG{l+m}{2} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n+nb}{exit} \PYG{l+m}{1}
+
+\PYG{n+nv}{user}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}1}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{n+nv}{uid}\PYG{o}{=}\PYG{k}{\PYGZdl{}(}getent passwd \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}user}\PYG{l+s+s2}{\PYGZdq{}} \PYG{p}{|} cut \PYGZhy{}d\PYG{l+s+s1}{\PYGZsq{}:\PYGZsq{}} \PYGZhy{}f3\PYG{k}{)}
+
+\PYG{n+nv}{u\PYGZus{}pattern}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZca{}...[sx]\PYGZsq{}}
+\PYG{n+nv}{g\PYGZus{}pattern}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZca{}......[sx]\PYGZsq{}}
+\PYG{n+nv}{o\PYGZus{}pattern}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZca{}.........[xt]\PYGZsq{}}
+
+\PYG{k}{for} file in \PYG{k}{\PYGZdl{}(}ls\PYG{k}{)}\PYG{p}{;} \PYG{k}{do}
+    \PYG{k}{if} \PYG{o}{[} ! \PYGZhy{}f \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}file}\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{]}\PYG{p}{;} \PYG{k}{then}
+        \PYG{k}{continue}
+    \PYG{k}{fi}
+
+    \PYG{n+nv}{uid\PYGZus{}f}\PYG{o}{=}\PYG{k}{\PYGZdl{}(}ls \PYGZhy{}n \PYGZhy{}\PYGZhy{} \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}file}\PYG{l+s+s2}{\PYGZdq{}} \PYG{p}{|} awk \PYG{l+s+s1}{\PYGZsq{}\PYGZob{} print \PYGZdl{}3 \PYGZcb{}\PYGZsq{}}\PYG{k}{)} 
+    \PYG{n+nv}{gid\PYGZus{}f}\PYG{o}{=}\PYG{k}{\PYGZdl{}(}ls \PYGZhy{}n \PYGZhy{}\PYGZhy{} \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}file}\PYG{l+s+s2}{\PYGZdq{}} \PYG{p}{|} awk \PYG{l+s+s1}{\PYGZsq{}\PYGZob{} print \PYGZdl{}4 \PYGZcb{}\PYGZsq{}}\PYG{k}{)}
+
+    \PYG{k}{if} \PYG{o}{[} \PYG{n+nv}{\PYGZdl{}uid} \PYG{o}{=} \PYG{n+nv}{\PYGZdl{}uid\PYGZus{}f} \PYG{o}{]}\PYG{p}{;} \PYG{k}{then}
+        ls \PYGZhy{}l \PYGZhy{}\PYGZhy{} \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}file}\PYG{l+s+s2}{\PYGZdq{}} \PYG{p}{|} grep \PYGZhy{}q \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}u\PYGZus{}pattern}\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n+nb}{echo} \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}file}\PYG{l+s+s2}{\PYGZdq{}}
+        \PYG{k}{continue}
+    \PYG{k}{fi}
+
+    \PYG{k}{for} gr in \PYG{k}{\PYGZdl{}(}groups \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}user}\PYG{l+s+s2}{\PYGZdq{}}\PYG{k}{)}\PYG{p}{;} \PYG{k}{do}
+        \PYG{n+nv}{gid}\PYG{o}{=}\PYG{k}{\PYGZdl{}(}getent group \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}gr}\PYG{l+s+s2}{\PYGZdq{}} \PYG{p}{|} cut \PYGZhy{}d\PYG{l+s+s1}{\PYGZsq{}:\PYGZsq{}} \PYGZhy{}f3\PYG{k}{)}
+        \PYG{k}{if} \PYG{o}{[} \PYG{n+nv}{\PYGZdl{}gid} \PYG{o}{=} \PYG{n+nv}{\PYGZdl{}gid\PYGZus{}f} \PYG{o}{]}\PYG{p}{;} \PYG{k}{then}
+            ls \PYGZhy{}l \PYGZhy{}\PYGZhy{} \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}file}\PYG{l+s+s2}{\PYGZdq{}} \PYG{p}{|} grep \PYGZhy{}q \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}g\PYGZus{}pattern}\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n+nb}{echo} \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}file}\PYG{l+s+s2}{\PYGZdq{}}
+            \PYG{k}{continue} \PYG{l+m}{2}
+        \PYG{k}{fi}
+    \PYG{k}{done}
+
+    ls \PYGZhy{}l \PYGZhy{}\PYGZhy{} \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}file}\PYG{l+s+s2}{\PYGZdq{}} \PYG{p}{|} grep \PYGZhy{}q \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}o\PYGZus{}pattern}\PYG{l+s+s2}{\PYGZdq{}}  \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n+nb}{echo} \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}file}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{k}{done}
+\end{Verbatim}

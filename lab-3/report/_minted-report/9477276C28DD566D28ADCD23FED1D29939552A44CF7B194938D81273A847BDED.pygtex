@@ -1,0 +1,35 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+ch}{\PYGZsh{}!/bin/bash}
+
+\PYG{c+c1}{\PYGZsh{} Вариант 2}
+\PYG{c+c1}{\PYGZsh{} Список пользователей, имеющих право чтения заданного файла.}
+
+\PYG{o}{[[} ! \PYGZhy{}n \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}1}\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{]]} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n+nb}{echo} \PYG{l+s+s2}{\PYGZdq{}One argument is required\PYGZdq{}} \PYGZgt{}\PYG{p}{\PYGZam{}}\PYG{l+m}{2} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n+nb}{exit} \PYG{l+m}{1}
+\PYG{o}{[[} ! \PYGZhy{}f \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}1}\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{]]} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n+nb}{echo} \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}1}\PYG{l+s+s2}{ is not a file\PYGZdq{}} \PYGZgt{}\PYG{p}{\PYGZam{}}\PYG{l+m}{2} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n+nb}{exit} \PYG{l+m}{1}
+
+\PYG{n+nv}{file}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}1}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{n+nv}{file\PYGZus{}owner}\PYG{o}{=}\PYG{k}{\PYGZdl{}(}ls \PYGZhy{}n \PYGZhy{}\PYGZhy{} \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}file}\PYG{l+s+s2}{\PYGZdq{}} \PYG{p}{|} nawk \PYG{l+s+s1}{\PYGZsq{}\PYGZob{}print \PYGZdl{}3\PYGZcb{}\PYGZsq{}}\PYG{k}{)}
+\PYG{n+nv}{file\PYGZus{}owner\PYGZus{}group}\PYG{o}{=}\PYG{k}{\PYGZdl{}(}ls \PYGZhy{}n \PYGZhy{}\PYGZhy{} \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}file}\PYG{l+s+s2}{\PYGZdq{}} \PYG{p}{|} nawk \PYG{l+s+s1}{\PYGZsq{}\PYGZob{}print \PYGZdl{}4\PYGZcb{}\PYGZsq{}}\PYG{k}{)}
+\PYG{n+nv}{group\PYGZus{}members}\PYG{o}{=}\PYG{k}{\PYGZdl{}(}getent group \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}file\PYGZus{}owner\PYGZus{}group}\PYG{l+s+s2}{\PYGZdq{}} \PYG{p}{|} cut \PYGZhy{}d\PYG{l+s+s1}{\PYGZsq{}:\PYGZsq{}} \PYGZhy{}f4\PYG{k}{)}
+
+\PYG{n+nv}{u\PYGZus{}pattern}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZca{}.r\PYGZsq{}}
+\PYG{n+nv}{g\PYGZus{}pattern}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZca{}....r\PYGZsq{}}
+\PYG{n+nv}{o\PYGZus{}pattern}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZca{}.......r\PYGZsq{}}
+
+\PYG{k}{for} user\PYGZus{}id in \PYG{k}{\PYGZdl{}(}getent passwd \PYG{p}{|} cut \PYGZhy{}d\PYG{l+s+s1}{\PYGZsq{}:\PYGZsq{}} \PYGZhy{}f3\PYG{k}{)}\PYG{p}{;} \PYG{k}{do}
+    
+    \PYG{k}{if} \PYG{o}{[} \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}user\PYGZus{}id}\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}file\PYGZus{}owner}\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{]}\PYG{p}{;} \PYG{k}{then}
+        ls \PYGZhy{}l \PYGZhy{}\PYGZhy{} \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}file}\PYG{l+s+s2}{\PYGZdq{}} \PYG{p}{|} grep \PYGZhy{}q \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}u\PYGZus{}pattern}\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{\PYGZam{}\PYGZam{}} getent passwd \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}user\PYGZus{}id}\PYG{l+s+s2}{\PYGZdq{}} \PYG{p}{|} cut \PYGZhy{}d: \PYGZhy{}f1 \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{k}{continue}
+    \PYG{k}{fi}
+
+    \PYG{k}{for} member in \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}group\PYGZus{}members}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{;} \PYG{k}{do}
+        \PYG{k}{if} \PYG{o}{[} \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}user\PYGZus{}id}\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}member}\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{]}\PYG{p}{;} \PYG{k}{then}
+            ls \PYGZhy{}l \PYGZhy{}\PYGZhy{} \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}file}\PYG{l+s+s2}{\PYGZdq{}} \PYG{p}{|} grep \PYGZhy{}q \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}g\PYGZus{}pattern}\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{\PYGZam{}\PYGZam{}} getent passwd \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}user\PYGZus{}id}\PYG{l+s+s2}{\PYGZdq{}} \PYG{p}{|} cut \PYGZhy{}d: \PYGZhy{}f1 \PYG{o}{\PYGZam{}\PYGZam{}}
+            \PYG{k}{continue} \PYG{l+m}{2}
+        \PYG{k}{fi}
+    \PYG{k}{done}
+
+    ls \PYGZhy{}l \PYGZhy{}\PYGZhy{} \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}file}\PYG{l+s+s2}{\PYGZdq{}} \PYG{p}{|} grep \PYGZhy{}q \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}o\PYGZus{}pattern}\PYG{l+s+s2}{\PYGZdq{}} \PYG{o}{\PYGZam{}\PYGZam{}} getent passwd \PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}user\PYGZus{}id}\PYG{l+s+s2}{\PYGZdq{}} \PYG{p}{|} cut \PYGZhy{}d: \PYGZhy{}f1 \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{k}{continue}
+       
+\PYG{k}{done}
+\end{Verbatim}
